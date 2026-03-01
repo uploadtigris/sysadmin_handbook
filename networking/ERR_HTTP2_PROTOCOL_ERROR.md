@@ -3,14 +3,14 @@
 
 **Date:** 2026-02-15\
 **OS:** Windows 11\
-**Environment:** Enterprise – Retail Store Network\
+**Environment:** Enterprise\
 **Category:** Networking, Authentication, Browser
 
 ---
 
 ## Situation
 
-Multiple workstations at a store location were unable to load an internal web application. Symptoms varied across incidents but included:
+Multiple workstations at a location were unable to load an internal web application. Symptoms varied across incidents but included:
 
 - Site continuously loading after clicking login (single workstation)
 - Gray screen after login across multiple workstations on both Chrome and Edge
