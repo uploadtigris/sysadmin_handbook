@@ -16,7 +16,7 @@ Restore printing capability for the affected user without disrupting other users
 ## Action
 1. Verified printer status showed ready in print services
 2. Confirmed port was set to TCP/IP
-3. Attempted to connect via print server `\\store-fs1` — received error `0x00000002`
+3. Attempted to connect via print server `\\store-fileshare` — received error `0x00000002`
 4. Attempted direct connection via printer IP — timed out
 5. Sent test page directly to printer — printed successfully, confirming printer itself was functional
 6. Restarted local print spooler:
