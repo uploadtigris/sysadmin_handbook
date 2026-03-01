@@ -3,7 +3,7 @@
 **Date:** 2026-02-12
 **OS:** Windows 11\
 **Environment:** Enterprise\
-**Category:** Workstation, Enrollment, Identity\
+**Category:** Workstation, Enrollment, Identity
 
 **Device Info:**
 - Hostname: `PNWSL-2Z02SY3`
