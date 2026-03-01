@@ -6,8 +6,7 @@
 **Category:** Workstation, Enrollment, Identity
 
 **Device Info:**
-- Hostname: `PNWSL-2Z02SY3`
-- Serial: `2Z02SY3`
+- Serial: `XXXXXX`
 - Model: Dell OptiPlex All-In-One 7410
 - Warranty: Ending August 27, 2026
 
@@ -40,12 +39,12 @@ C:\Windows\System32\Sysprep
 
 10. Device restarted and opened to the Whole Foods Market branded OOBE screen
 11. Confirmed hardware hash visible in Intune:
-    - Devices → Enrollment → Windows Autopilot Devices → ST: `2Z02SY3`
+    - Devices → Enrollment → Windows Autopilot Devices → ST: `XXXXXXX`
 
 ## Result
 Device successfully enrolled in Windows Autopilot. Hash confirmed present in Intune. User will complete first-time MFA sign-in setup via Microsoft Authenticator with a manager present.
 
 ---
 
-**KBA:** `KB0018057` — Windows Autopilot Technical Overview  
+**KBA:** `XXXXXXXX` — Windows Autopilot Technical Overview  
 **Tags:** `windows` `autopilot` `intune` `enrollment` `sysprep` `oobe` `domain` `MFA`
