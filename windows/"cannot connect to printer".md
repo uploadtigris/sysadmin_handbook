@@ -1,8 +1,8 @@
 # Windows Network Printer Failure — Error 0x00000002
 
-**Date:** 2026-03-01
-**OS:** Windows 11
-**Environment:** Enterprise
+**Date:** 2026-03-01\
+**OS:** Windows 11\
+**Environment:** Enterprise\
 **Category:** Hardware, Networking
 
 ---
