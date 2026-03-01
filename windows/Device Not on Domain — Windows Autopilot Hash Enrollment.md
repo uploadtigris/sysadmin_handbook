@@ -1,9 +1,9 @@
 # Device Not on Domain — Windows Autopilot Hash Enrollment
 
 **Date:** 2026-02-12
-**OS:** Windows 11
-**Environment:** Enterprise
-**Category:** Workstation, Enrollment, Identity
+**OS:** Windows 11\
+**Environment:** Enterprise\
+**Category:** Workstation, Enrollment, Identity\
 
 **Device Info:**
 - Hostname: `PNWSL-2Z02SY3`
