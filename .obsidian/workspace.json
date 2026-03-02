@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "networking/**Pi-hole DNS Failure After IP Address Change (Restart)**.md",
+                "file": "networking/Pi-hole DNS Failure After IP Address Change (Restart).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "**Pi-hole DNS Failure After IP Address Change (Restart)**"
+              "title": "Pi-hole DNS Failure After IP Address Change (Restart)"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "networking/**Pi-hole DNS Failure After IP Address Change (Restart)**.md",
+                "file": "networking/Pi-hole DNS Failure After IP Address Change (Restart).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for **Pi-hole DNS Failure After IP Address Change (Restart)**"
+              "title": "Backlinks for Pi-hole DNS Failure After IP Address Change (Restart)"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "networking/**Pi-hole DNS Failure After IP Address Change (Restart)**.md",
+                "file": "networking/Pi-hole DNS Failure After IP Address Change (Restart).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from **Pi-hole DNS Failure After IP Address Change (Restart)**"
+              "title": "Outgoing links from Pi-hole DNS Failure After IP Address Change (Restart)"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "networking/**Pi-hole DNS Failure After IP Address Change (Restart)**.md",
+                "file": "networking/Pi-hole DNS Failure After IP Address Change (Restart).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of **Pi-hole DNS Failure After IP Address Change (Restart)**"
+              "title": "Outline of Pi-hole DNS Failure After IP Address Change (Restart)"
             }
           }
         ]
@@ -183,11 +183,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "3ae48fb472664079",
+  "active": "c460e8ef4030d354",
   "lastOpenFiles": [
     "0-imgs",
     "README.md",
-    "networking/**Pi-hole DNS Failure After IP Address Change (Restart)**.md",
+    "networking/Pi-hole DNS Failure After IP Address Change (Restart).md",
     "networking/ERR_HTTP2_PROTOCOL_ERROR.md",
     "networking"
   ]

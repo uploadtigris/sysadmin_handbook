@@ -17,8 +17,6 @@ Connection error (1.1.1.1#53): failed to send UDP request (Network unreachable)
 
 Pi-hole could not reach Cloudflare's upstream DNS server at `1.1.1.1`. After restarting the Raspberry Pi, it had grabbed a new DHCP lease from Google Fiber, causing its IP address to change from the expected static address.
 
-> 📎 _[Insert screenshot of error here]_
-
 ---
 
 **Task**
