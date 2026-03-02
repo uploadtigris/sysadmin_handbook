@@ -1,4 +1,9 @@
-Date: 2025-MM-DD\ OS: Raspberry Pi OS (Debian-based)\ Environment: Homelab\ Category: Networking, DNS, Service
+# Pi-hole DNS Failure After IP Address Change (Restart)
+
+Date: 2025-MM-DD\
+OS: Raspberry Pi OS (Debian-based)\
+Environment: Homelab\
+Category: Networking, DNS, Service
 
 ---
 
