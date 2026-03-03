@@ -41,7 +41,7 @@ Get-NetAdapter | Restart-NetAdapter    # Power cycles all network adapters
 ```cmd
 netsh interface ip delete arpcache    # Clears cached IP-to-MAC mappings that may be outdated
 ```
-**7. Nuclear Option — Full Network Reset**
+**7. Nuclear Option — Full Network Reset**\
 Settings → Network & Internet → Advanced → Network Reset
 *(Reinstalls all adapters and resets all network components to default)*
 
