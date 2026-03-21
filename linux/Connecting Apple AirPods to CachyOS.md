@@ -1,8 +1,8 @@
 # AirPods Pairing Failure on Linux — Bluetooth Mode Mismatch
 
-**Date:** 2026-03-21
-**OS:** CachyOS x86_64
-**Environment:**  Personal Workstation
+**Date:** 2026-03-21\
+**OS:** CachyOS x86_64\
+**Environment:**  Personal Workstation\
 **Category:** Bluetooth, Hardware, Service
 
 ---
