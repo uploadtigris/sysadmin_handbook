@@ -1,15 +1,15 @@
 # AirPods Pairing Failure on Linux — Bluetooth Mode Mismatch
 
 **Date:** 2026-03-21
-**OS:** (your distro here)
-**Environment:** Homelab / Personal Workstation
+**OS:** CachyOS x86_64
+**Environment:**  Personal Workstation
 **Category:** Bluetooth, Hardware, Service
 
 ---
 
 ## Situation
 
-AirPods were not appearing or pairing successfully via the Linux Bluetooth menu despite the adapter being active and other devices working normally.
+AirPods 4 were not appearing or pairing successfully via the Linux Bluetooth menu despite the adapter being active and other devices working normally.
 
 ## Task
 
