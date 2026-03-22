@@ -1,0 +1,55 @@
+
+- following [virt-manager Arch Linux Documentation](https://wiki.archlinux.org/title/Virt-manager)
+
+- sudo pacman -S virt-manager
+- sudo pacman -S qemu
+- sudo systemctl enable libvirtd.service
+- sudo systemctl enable libvirtd.socket
+- Adding user to the libvirt user group
+--- sudo usermod -aG libvirt $USER
+- running virt-manager gives this error
+--- Gtk-Message: 13:51:51.048: Failed to load module "appmenu-gtk-module"
+- sudo pacman -S appmenu-gtk-module
+- running virt-manager still gives error
+--- QEMU/KVM - Not Connected
+--- Unable to connect to libvirt qemu:///system.
+--- Verify that an appropriate libvirt daemon is running
+- I have already enable the service and socket, so I will restart my system.
+- on running virt-manager, QEMU/KVM now shows as running
+- error showing after clicking the QEMU/KVM selection in virt-manager after startup
+--- Gdk-CRITICAL **: 13:59:15.776: gdk_wayland_window_set_dbus_properties_libgtk_only: assertion 'GDK_IS_WAYLAND_WINDOW (window)' 
+- This is likely happening due to the application trying to set Wayland-specific window propeties, while the window itself is not propely initialized as a Wayland window at that moment.
+- Forcing virt-manager to run through XWayland (non-native) removes the error
+--- GDK_BACKEND=x11 virt-manager 
+- This is a temporary fix and the error itself is not causing other issues. I will run virt-manager through the Wayland window, until and if it begins to present issues.
+
+- I will now begin the installation of a virtual machine
+- checking my systems platform `uname -m` : output: x86_64
+- Downloading Minimal x86_64 ISO of Alma Linux
+--- AlmaLinux-9.7-x86_64-minimal(1).iso
+- Downloading CHECKSUM for the ISO
+- running this command to check the ISO hash with the checksum file
+---sha256sum -c CHECKSUM 2>/dev/null | grep AlmaLinux-9.7-x86_64-minimal.iso
+--- Output: AlmaLinux-9.7-x86_64-minimal.iso: OK
+- ISO is authentic
+- running `virt-manager`
+- Create a new virtual machine (computer with play button in top left)
+- Local install media (ISO)
+- Add new storage pool (plus icon in bottom left)
+- Select 'AlmaLinux-9.7-x86_64-minimal.iso'
+- "The emulator may not have search permissions for the path" >> click yes
+- allocating 4096 MiB ( ~ 4 GB RAM )
+- run `nproc` to view the number of available CPU cores --> I have 8
+- I am allocating 2 CPU cores to this VM
+- I am allocating 20 GiB of harddrive space to this VM
+- Virtual network 'default': NAT (inactive)
+- "...not active. would you liek to start the network now?"
+- VM GUI started up
+- "Test and Install Alma Linux 9.7"
+- No security profile (confusing for learning SELinux, which it part of what I hope to accomplish with this VM)
+- created user with admin privileges
+- VM is now open
+
+- My next goal is to SSH into this VM
+- On VM, running `ip a` shows the current network devices
+- There is no connection for the out-facing enp1s0 connection 
