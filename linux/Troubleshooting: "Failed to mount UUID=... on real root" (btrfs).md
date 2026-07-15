@@ -12,7 +12,7 @@ sh: can't access tty; job control turned off
 [rootfs ~]#
 ```
 
-The `can't access tty` line is a harmless busybox message — ignore it. The
+The `can't access tty` line is a harmless busybox message, ignore it. The
 actual problem is the failed mount above it.
 
 ## Step 1 — Identify every partition and its real UUID
@@ -29,15 +29,15 @@ Example output:
 ```
 
 Field cheat sheet:
-- **`UUID`** — the filesystem's own ID. This is what the kernel cmdline and
+- **`UUID`**: the filesystem's own ID. This is what the kernel cmdline and
   `/etc/fstab` reference. This is the one you're matching against the error.
-- **`PARTUUID`** — the GPT partition table's ID. A different thing, used by
+- **`PARTUUID`**: the GPT partition table's ID. A different thing, used by
   different boot configs. Don't confuse it with `UUID`.
-- **`UUID_SUB`** — only appears on btrfs. Normal, not a sign of a problem.
+- **`UUID_SUB`**: only appears on btrfs. Normal, not a sign of a problem.
 
 **Match the UUID from the error message against the `UUID` field, not
 partition size or number.** In the example above, `bad68549-...` on
-`/dev/nvme0n1p2` matches the error exactly — so `p2` is confirmed root.
+`/dev/nvme0n1p2` matches the error exactly, so `p2` is confirmed root.
 
 If you don't have an error UUID to match against (e.g. just exploring),
 fall back on size/mountpoint conventions: EFI partition is small (~300MB–1GB,
@@ -52,6 +52,74 @@ cat /proc/filesystems | grep btrfs
 
 Output of `btrfs` confirms it's loaded. If nothing prints, run `modprobe btrfs`.
 
+## Step 3 — Attempt a manual mount to surface the real error
+
+```sh
+mkdir -p /mnt/root
+mount -t btrfs /dev/nvme0n1p2 /mnt/root
+```
+
+- **Mounts clean**: the partition is fine; check subvolumes (Step 5).
+- **Fails**: run `dmesg | tail -40` for the actual kernel-level reason
+  (bad superblock, I/O error, etc.) instead of relying on the generic
+  boot-time message.
+
+## Step 4 — If it fails: try zero-log before anything more invasive
+
+```sh
+sudo btrfs rescue zero-log /dev/nvme0n1p2
+```
+
+Expected output on success:
+```
+clearing log on /dev/nvme0n1p2, previous log_root <number>, level 0
+```
+
+This clears an inconsistent tree-log, a common result of an unclean
+shutdown, without touching your data. It's the safest first repair step.
+After it succeeds, repeat Step 3's manual mount to confirm the fix worked.
+
+**Do not** reach for `btrfs check --repair` or `btrfs-convert` before this.
+`check --repair` can make things worse if misapplied, and `btrfs-convert` is
+for converting an ext2/3/4 filesystem *into* btrfs. It has nothing to do
+with this failure and will misleadingly report "No valid Btrfs found" if run
+against the wrong or unrelated device.
+
+## Step 5 — Once mounted, confirm subvolumes are intact
+
+```sh
+btrfs subvolume list /mnt/root
+```
+
+Look for the subvolumes your distro expects (commonly `@` and `@home`). If
+they're missing or renamed, that's a separate issue from the log-tree problem
+and needs its own fix.
+
+## Common pitfalls
+
+- **Whole-disk vs. partition device**: `/dev/nvme0n1` is the raw disk (a GPT
+  table, not a filesystem). Always target the specific partition, e.g.
+  `/dev/nvme0n1p2`. Running filesystem tools against the bare disk gives
+  misleading "no valid filesystem" errors.
+- **Confusing UUID types**: matching `PARTUUID` or `UUID_SUB` instead of
+  `UUID` will lead you to "confirm" the wrong partition.
+- **Trusting rescue-shell mountpoints as production truth**: what you see
+  mounted in a live/emergency shell reflects that session only, not what
+  `/etc/fstab` expects on the real system. Always cross-reference against
+  `blkid`'s `UUID` field instead.
+
+## Summary flow
+
+```
+Boot fails → note the UUID from the error
+  → blkid: find matching partition
+  → confirm btrfs module loaded
+  → manual mount attempt
+      → succeeds → check subvolumes → reboot
+      → fails → dmesg for real error
+              → btrfs rescue zero-log → retry manual mount
+              → still fails → btrfs check (read-only) before --repair
+```
 ## Step 3 — Attempt a manual mount to surface the real error
 
 ```sh
