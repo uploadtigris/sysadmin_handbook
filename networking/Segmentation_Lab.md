@@ -243,4 +243,32 @@ One STAR entry per problem. Copy the blank entry for each new one.
 
 ---
 
+## Images
+
+Screenshots for this page go in [`images/segmentation_lab/`](images/segmentation_lab/).
+Redact real addresses, SSID names and MAC addresses before adding them.
+
+To show one in this page:
+
+```markdown
+![pfSense VLAN list](images/segmentation_lab/01_pfsense_vlans.png)
+```
+
+Suggested file names, one per evidence item above:
+
+| Step | File name |
+|---|---|
+| 1 | `01_pfsense_vlans.png`, `01_pfsense_dhcp_trusted.png`, `01_pfsense_dhcp_iot.png`, `01_pfsense_dhcp_guest.png`, `01_pfsense_dhcp_servers.png` |
+| 2 | `02_switch_vlan_membership.png`, `02_switch_pvid.png` |
+| 3 | `03_ap_ssid_vlan.png` |
+| 4 | `04_pihole_dashboard.png`, `04_pihole_query_log.png` |
+| 5 | `05_rules_trusted.png`, `05_rules_iot.png`, `05_rules_guest.png`, `05_rules_servers.png` |
+| 6 | `06_iot_dhcp_leases.png` |
+| 7 | `07_test_1_address.png` through `07_test_7_internet.png` |
+| 8 | `08_network_diagram.png` |
+
+<!-- Add images below this line as they are captured -->
+
+---
+
 **Tags:** `networking` `vlan` `802.1q` `pfsense` `dhcp` `dns` `pihole` `firewall` `homelab`
