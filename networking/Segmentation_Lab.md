@@ -68,6 +68,26 @@ Tick each item when it is done and the evidence is saved. Add the date to each s
 # notes, commands, output
 ```
 
+**Screenshots**
+
+_Placeholder: pfSense VLAN list_ — Interfaces > Assignments > VLANs, showing tags 20, 30, 40 and 50 on the LAN NIC  
+<!-- ![pfSense VLAN list](images/segmentation_lab/01_pfsense_vlans.png) -->
+
+_Placeholder: pfSense interface assignments_ — TRUSTED, IOT, GUEST and SERVERS enabled with their gateway addresses  
+<!-- ![pfSense interface assignments](images/segmentation_lab/01_pfsense_interfaces.png) -->
+
+_Placeholder: DHCP scope: Trusted_ — range, DNS server and gateway for VLAN 20  
+<!-- ![DHCP scope: Trusted](images/segmentation_lab/01_pfsense_dhcp_trusted.png) -->
+
+_Placeholder: DHCP scope: IoT_ — range, DNS server and gateway for VLAN 30  
+<!-- ![DHCP scope: IoT](images/segmentation_lab/01_pfsense_dhcp_iot.png) -->
+
+_Placeholder: DHCP scope: Guest_ — range and DNS server (pfSense resolver, not Pi-hole) for VLAN 40  
+<!-- ![DHCP scope: Guest](images/segmentation_lab/01_pfsense_dhcp_guest.png) -->
+
+_Placeholder: DHCP scope: Servers_ — range plus the static mappings for the Pi-hole and the Latitude  
+<!-- ![DHCP scope: Servers](images/segmentation_lab/01_pfsense_dhcp_servers.png) -->
+
 ### 2. Switch: 802.1Q VLANs (GS308EP) — Date: ____
 
 | Port | Device | Untagged (PVID) | Tagged |
@@ -96,6 +116,14 @@ Tick each item when it is done and the evidence is saved. Add the date to each s
 # notes, commands, output
 ```
 
+**Screenshots**
+
+_Placeholder: Switch VLAN membership_ — tagged (T) and untagged (U) ports for each VLAN, matching the port map  
+<!-- ![Switch VLAN membership](images/segmentation_lab/02_switch_vlan_membership.png) -->
+
+_Placeholder: Switch PVID table_ — PVID 50 on ports 3 and 4, PVID 20 on ports 5 to 7, PVID 1 on ports 1, 2 and 8  
+<!-- ![Switch PVID table](images/segmentation_lab/02_switch_pvid.png) -->
+
 ### 3. Access point: one SSID per VLAN (EAP610) — Date: ____
 
 | SSID | VLAN | Band | Security |
@@ -115,6 +143,14 @@ Tick each item when it is done and the evidence is saved. Add the date to each s
 # notes, commands, output
 ```
 
+**Screenshots**
+
+_Placeholder: AP SSID to VLAN mapping_ — each SSID with its VLAN ID, band and security mode  
+<!-- ![AP SSID to VLAN mapping](images/segmentation_lab/03_ap_ssid_vlan.png) -->
+
+_Placeholder: Wi-Fi clients on the right subnets_ — one client per SSID showing an address from its VLAN  
+<!-- ![Wi-Fi clients on the right subnets](images/segmentation_lab/03_client_addresses.png) -->
+
 ### 4. Pi-hole onto the Servers VLAN — Date: ____
 
 - [ ] Move the Pi to switch port 3
@@ -126,6 +162,17 @@ Tick each item when it is done and the evidence is saved. Add the date to each s
 ```
 # notes, commands, output
 ```
+
+**Screenshots**
+
+_Placeholder: Pi-hole dashboard on the Servers VLAN_ — admin page loaded at the Pi-hole's Servers address  
+<!-- ![Pi-hole dashboard on the Servers VLAN](images/segmentation_lab/04_pihole_dashboard.png) -->
+
+_Placeholder: Pi-hole interface setting_ — Settings > DNS with "Permit all origins" selected  
+<!-- ![Pi-hole interface setting](images/segmentation_lab/04_pihole_permit_all.png) -->
+
+_Placeholder: Pi-hole query log_ — queries arriving from clients on other VLANs  
+<!-- ![Pi-hole query log](images/segmentation_lab/04_pihole_query_log.png) -->
 
 ### 5. Firewall rules — Date: ____
 
@@ -149,12 +196,37 @@ Rules are evaluated top-down per interface; first match wins.
 # notes, commands, output
 ```
 
+**Screenshots**
+
+_Placeholder: RFC1918 alias_ — the three private ranges in one alias  
+<!-- ![RFC1918 alias](images/segmentation_lab/05_alias_rfc1918.png) -->
+
+_Placeholder: Firewall rules: TRUSTED_ — allow any  
+<!-- ![Firewall rules: TRUSTED](images/segmentation_lab/05_rules_trusted.png) -->
+
+_Placeholder: Firewall rules: IOT_ — DNS to Pi-hole, block RFC1918, allow any, in that order  
+<!-- ![Firewall rules: IOT](images/segmentation_lab/05_rules_iot.png) -->
+
+_Placeholder: Firewall rules: GUEST_ — DNS to the gateway, block RFC1918, allow any, in that order  
+<!-- ![Firewall rules: GUEST](images/segmentation_lab/05_rules_guest.png) -->
+
+_Placeholder: Firewall rules: SERVERS_ — block RFC1918, allow any  
+<!-- ![Firewall rules: SERVERS](images/segmentation_lab/05_rules_servers.png) -->
+
+_Placeholder: NAT DNS redirect (stretch)_ — port-forward on IOT sending outbound port 53 to the Pi-hole  
+<!-- ![NAT DNS redirect (stretch)](images/segmentation_lab/05_nat_dns_redirect.png) -->
+
 ### 6. Move the hydroponics gear to IoT — Date: ____
 
 - [ ] Join the Pico W to the IoT SSID
 - [ ] Join the Pi Zero W to the IoT SSID
 - [ ] Join the Gardyn to the IoT SSID
 - [ ] Evidence: DHCP leases showing the devices on 10.0.30.x
+
+**Screenshots**
+
+_Placeholder: IoT DHCP leases_ — the Pico W, Pi Zero W and Gardyn holding addresses on the IoT VLAN  
+<!-- ![IoT DHCP leases](images/segmentation_lab/06_iot_dhcp_leases.png) -->
 
 ### 7. Test matrix — Date: ____
 
@@ -170,6 +242,29 @@ Screenshot every result.
 | 6 | Mgmt locked down | Guest or IoT | browser to 10.0.1.2 | Fails | | ☐ |
 | 7 | Internet everywhere | All VLANs | `ping 1.1.1.1` | Works | | ☐ |
 
+**Screenshots**
+
+_Placeholder: Test 1: right address_ — `ipconfig` / `ip a` output from a client on each VLAN  
+<!-- ![Test 1: right address](images/segmentation_lab/07_test_1_address.png) -->
+
+_Placeholder: Test 2: DNS through Pi-hole_ — `nslookup doubleclick.net` returning 0.0.0.0 from Trusted and IoT  
+<!-- ![Test 2: DNS through Pi-hole](images/segmentation_lab/07_test_2_dns_blocked.png) -->
+
+_Placeholder: Test 3: Guest can't see home_ — ping from a Guest phone to a Trusted address failing  
+<!-- ![Test 3: Guest can't see home](images/segmentation_lab/07_test_3_guest_isolated.png) -->
+
+_Placeholder: Test 4: IoT can't reach the server_ — `curl` from an IoT device to the Latitude failing  
+<!-- ![Test 4: IoT can't reach the server](images/segmentation_lab/07_test_4_iot_blocked.png) -->
+
+_Placeholder: Test 5: Trusted reaches the server_ — the server page loading from the laptop  
+<!-- ![Test 5: Trusted reaches the server](images/segmentation_lab/07_test_5_trusted_allowed.png) -->
+
+_Placeholder: Test 6: Mgmt locked down_ — switch UI unreachable from Guest or IoT  
+<!-- ![Test 6: Mgmt locked down](images/segmentation_lab/07_test_6_mgmt_locked.png) -->
+
+_Placeholder: Test 7: internet everywhere_ — `ping 1.1.1.1` succeeding from every VLAN  
+<!-- ![Test 7: internet everywhere](images/segmentation_lab/07_test_7_internet.png) -->
+
 ### 8. Write-up — Date: ____
 
 - [ ] Network diagram finalized
@@ -177,6 +272,11 @@ Screenshot every result.
 - [ ] "Problems I hit" section written from the entries below
 - [ ] Status changed to Completed (only after the test matrix passes)
 - [ ] Portfolio site segmentation card updated
+
+**Screenshots**
+
+_Placeholder: Final network diagram_ — five VLANs, trunks, gateways, Pi-hole and the Latitude  
+<!-- ![Final network diagram](images/segmentation_lab/08_network_diagram.png) -->
 
 ## Result
 
@@ -254,20 +354,11 @@ To show one in this page:
 ![pfSense VLAN list](images/segmentation_lab/01_pfsense_vlans.png)
 ```
 
-Suggested file names, one per evidence item above:
+Every screenshot has a placeholder under its step in the Action section. To fill
+one in: save the file under the name in the placeholder, then delete the
+`<!--` and `-->` around the image line and remove the _Placeholder_ line above it.
 
-| Step | File name |
-|---|---|
-| 1 | `01_pfsense_vlans.png`, `01_pfsense_dhcp_trusted.png`, `01_pfsense_dhcp_iot.png`, `01_pfsense_dhcp_guest.png`, `01_pfsense_dhcp_servers.png` |
-| 2 | `02_switch_vlan_membership.png`, `02_switch_pvid.png` |
-| 3 | `03_ap_ssid_vlan.png` |
-| 4 | `04_pihole_dashboard.png`, `04_pihole_query_log.png` |
-| 5 | `05_rules_trusted.png`, `05_rules_iot.png`, `05_rules_guest.png`, `05_rules_servers.png` |
-| 6 | `06_iot_dhcp_leases.png` |
-| 7 | `07_test_1_address.png` through `07_test_7_internet.png` |
-| 8 | `08_network_diagram.png` |
-
-<!-- Add images below this line as they are captured -->
+<!-- Extra images that do not belong to a step go below this line -->
 
 ---
 
