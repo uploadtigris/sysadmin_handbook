@@ -343,23 +343,4 @@ One STAR entry per problem. Copy the blank entry for each new one.
 
 ---
 
-## Images
-
-Screenshots for this page go in [`images/segmentation_lab/`](images/segmentation_lab/).
-Redact real addresses, SSID names and MAC addresses before adding them.
-
-To show one in this page:
-
-```markdown
-![pfSense VLAN list](images/segmentation_lab/01_pfsense_vlans.png)
-```
-
-Every screenshot has a placeholder under its step in the Action section. To fill
-one in: save the file under the name in the placeholder, then delete the
-`<!--` and `-->` around the image line and remove the _Placeholder_ line above it.
-
-<!-- Extra images that do not belong to a step go below this line -->
-
----
-
 **Tags:** `networking` `vlan` `802.1q` `pfsense` `dhcp` `dns` `pihole` `firewall` `homelab`
